@@ -1,144 +1,95 @@
-.wrapper{
+.keyboard {
     margin: 0 auto;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    
+    width: 100%;
+    max-width: 1000px;
+    padding: 5px 0;
+    background: grey;
+    user-select: none;
 }
 
 h1 {
-    color: rgb(30, 30, 200);
     text-align: center;
+}
+
+.body-textarea{
+    display: block;
+    margin: 0 auto 5px;
+    width: 980px;
 }
 
 p {
+    position: fixed;
+    bottom: 0px;
+}
+
+.keyboard__keys {
     text-align: center;
 }
 
-.body-textarea {
-    width: 900px;
-    display: block;
-    margin: 0 auto;
-    padding: 5px;
-    border-radius: 3px;
-    margin-bottom: 5px;
-}
-
-.keyboard{
-    width: 100%;
-    max-width: 1008px;
-    margin: 0 auto;
-    border: 2px solid #111;
-    border-radius: 5px;
-    background-color: gray;
-}
-
-.keyboaed-line{
-    display: flex;
-    width: 100%;
-}
-
-.keys{
-    display: flex;
+.keyboard__key {
+    height: 45px;
+    width: 6%;
+    max-width: 130px;
+    margin: 3px;
+    border-radius: 4px;
+    border: none;
+    background: #fff;
+    color: #000;
+    font-size: 1.05rem;
+    outline: none;
+    cursor: pointer;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 60px;
-    height: 60px;
-    margin: 4px;
-    background-color: #fff;
-    border-radius: 5px;
+    vertical-align: top;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
 }
 
-.Backspace {
-    width: 135px;
+.keyboard__key:active {
+    background: #a7a3c2;
+}
+
+.keyboard__key--wide {
+    background-color: antiquewhite;
+    width: 19%;
+}
+
+.keyboard__key--tab{
+    background-color: antiquewhite;
+    width: 6.5%;
+}
+
+.keyboard__key--del {
+    background-color: antiquewhite;
+    width: 6%;
+}
+
+.keyboard__key--shift, .keyboard__key--ArrowRight, .keyboard__key--ArrowUp, .keyboard__key--ArrowLeft, .keyboard__key--ArrowDown, .keyboard__key--ctrl, .keyboard__key--win, .keyboard__key--alt{
     background-color: antiquewhite;
 }
 
-.Tab{
-    width: 80px;
+.keyboard__key--extra-wide {
     background-color: antiquewhite;
+    width: 46%;
+    max-width: 500px;
 }
 
-.Delete{
-    width: 70px;
-    background-color: antiquewhite;
+.keyboard__key--activatable::after {
+    content: '';
+    top: 10px;
+    right: 10px;
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    background: rgba(0, 0, 0, 0.4);
+    border-radius: 50%;
 }
 
-.CapsLock{
-    width: 120px;
-    background-color: antiquewhite;
+.keyboard__key--active::after {
+    background: #08ff00;
 }
 
-.ShiftLeft {
-    width: 130px;
-    background-color: antiquewhite;
+.keyboard__key--dark {
+    background: rgba(0, 0, 0, 0.25);
 }
-
-.Enter{
-    width: 128px;
-    background-color: antiquewhite;
-}
-
-.ArrowUp{
-    background-color: antiquewhite;
-}
-
-.ShiftRight{
-    background-color: antiquewhite;
-}
-
-.ControlLeft{
-    background-color: antiquewhite;
-}
-
-.MetaLeft{
-    background-color: antiquewhite;
-}
-
-.AltLeft{
-    background-color: antiquewhite;
-}
-
-.Space{
-    width: 470px;
-}
-
-.AltRight{
-    background-color: antiquewhite;
-}
-
-.ArrowLeft{
-    background-color: antiquewhite;
-}
-
-.ArrowDown{
-    background-color: antiquewhite;
-}
-
-.ArrowRight{
-    background-color: antiquewhite;
-}
-
-.ControlRight{
-    background-color: antiquewhite;
-}
-
-.keys.active{
-    background-color: #a7a3c2;
-    color: #fff;
-}
-
-.keys.remove {
-    animation: keys_animation 0.5s forwards;
-}
-
-@keyframes keys_animation {
-    0%{
-        background-color: #a7a3c2;
-        color: #fff;
-    }
-    100%{
-        background-color: #fff;
-        color: #000;
-    }
-}
-
