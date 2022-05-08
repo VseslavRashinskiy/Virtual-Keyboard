@@ -1,0 +1,144 @@
+.wrapper{
+    margin: 0 auto;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 18px;
+    
+}
+
+h1 {
+    color: rgb(30, 30, 200);
+    text-align: center;
+}
+
+p {
+    text-align: center;
+}
+
+.body-textarea {
+    width: 900px;
+    display: block;
+    margin: 0 auto;
+    padding: 5px;
+    border-radius: 3px;
+    margin-bottom: 5px;
+}
+
+.keyboard{
+    width: 100%;
+    max-width: 1008px;
+    margin: 0 auto;
+    border: 2px solid #111;
+    border-radius: 5px;
+    background-color: gray;
+}
+
+.keyboaed-line{
+    display: flex;
+    width: 100%;
+}
+
+.keys{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 60px;
+    height: 60px;
+    margin: 4px;
+    background-color: #fff;
+    border-radius: 5px;
+}
+
+.Backspace {
+    width: 135px;
+    background-color: antiquewhite;
+}
+
+.Tab{
+    width: 80px;
+    background-color: antiquewhite;
+}
+
+.Delete{
+    width: 70px;
+    background-color: antiquewhite;
+}
+
+.CapsLock{
+    width: 120px;
+    background-color: antiquewhite;
+}
+
+.ShiftLeft {
+    width: 130px;
+    background-color: antiquewhite;
+}
+
+.Enter{
+    width: 128px;
+    background-color: antiquewhite;
+}
+
+.ArrowUp{
+    background-color: antiquewhite;
+}
+
+.ShiftRight{
+    background-color: antiquewhite;
+}
+
+.ControlLeft{
+    background-color: antiquewhite;
+}
+
+.MetaLeft{
+    background-color: antiquewhite;
+}
+
+.AltLeft{
+    background-color: antiquewhite;
+}
+
+.Space{
+    width: 470px;
+}
+
+.AltRight{
+    background-color: antiquewhite;
+}
+
+.ArrowLeft{
+    background-color: antiquewhite;
+}
+
+.ArrowDown{
+    background-color: antiquewhite;
+}
+
+.ArrowRight{
+    background-color: antiquewhite;
+}
+
+.ControlRight{
+    background-color: antiquewhite;
+}
+
+.keys.active{
+    background-color: #a7a3c2;
+    color: #fff;
+}
+
+.keys.remove {
+    animation: keys_animation 0.5s forwards;
+}
+
+@keyframes keys_animation {
+    0%{
+        background-color: #a7a3c2;
+        color: #fff;
+    }
+    100%{
+        background-color: #fff;
+        color: #000;
+    }
+}
+
