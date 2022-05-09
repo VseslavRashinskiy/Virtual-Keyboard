@@ -1,4 +1,4 @@
-const textarea = document.querySelector(".body-textarea");
+const textarea = document.querySelector("textarea");
 
 const Keyboard = {
     elements: {
@@ -28,7 +28,7 @@ const Keyboard = {
         this.elements.keysContainer.appendChild(this._createKeys());
 
         this.elements.textarea = document.createElement('textarea');
-        this.elements.textarea.classList.add('body-textarea');
+        this.elements.textarea.classList.add('textarea');
 
         this.elements.keys = this.elements.keysContainer.querySelectorAll(".keyboard__key");
 
