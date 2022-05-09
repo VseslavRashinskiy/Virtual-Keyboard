@@ -7,14 +7,11 @@
     user-select: none;
 }
 
-h1 {
-    text-align: center;
-}
-
 .body-textarea{
     display: block;
     margin: 0 auto 5px;
     width: 980px;
+    min-height: 150px;
 }
 
 p {
