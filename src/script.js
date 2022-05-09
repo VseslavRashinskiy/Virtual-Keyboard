@@ -1,9 +1,10 @@
-const textarea = document.querySelector("textarea");
-
 const Keyboard = {
     elements: {
         main: null,
         keysContainer: null,
+        textarea: null,
+        header: null,
+        string: null,
         keys: []
     },
 
@@ -30,16 +31,24 @@ const Keyboard = {
         this.elements.textarea = document.createElement('textarea');
         this.elements.textarea.classList.add('textarea');
 
+        this.elements.string = document.createElement('p');
+        this.elements.string.textContent = "To change the language, press: shift + alt.";
+
+        this.elements.header = document.createElement('h2');
+        this.elements.header.textContent = "The keyboard is created in the Windows operating system.";
+        
         this.elements.keys = this.elements.keysContainer.querySelectorAll(".keyboard__key");
 
         // Add to DOM
         this.elements.main.appendChild(this.elements.textarea);
         this.elements.main.appendChild(this.elements.keysContainer);
+        this.elements.main.appendChild(this.elements.string);
+        this.elements.main.appendChild(this.elements.header);
         document.body.appendChild(this.elements.main);
 
-        textarea.addEventListener("focus", () => {
-            this.open(textarea.value, currentValue => {
-                textarea.value = currentValue;
+        this.elements.textarea.addEventListener("focus", () => {
+            this.open(this.elements.textarea.value, currentValue => {
+                this.elements.textarea.value = currentValue;
             });
         });
     },
@@ -70,13 +79,13 @@ const Keyboard = {
                     keyElement.appendChild(temp);
 
                     keyElement.addEventListener("click", () => {
-                        const arr = textarea.value.split('');
-                        const position = textarea.selectionStart;
+                        const arr = this.elements.textarea.value.split('');
+                        const position = this.elements.textarea.selectionStart;
                         if(position === 0) return;
                         arr.splice(position - 1, 1);
-                        textarea.value = arr.join('');
-                        textarea.selectionStart = textarea.selectionEnd;
-                        textarea.selectionStart = position - 1;
+                        this.elements.textarea.value = arr.join('');
+                        this.elements.textarea.selectionStart = this.elements.textarea.selectionEnd;
+                        this.elements.textarea.selectionStart = position - 1;
                     });
 
                     break;
@@ -88,12 +97,12 @@ const Keyboard = {
                     keyElement.appendChild(temp1);
 
                     keyElement.addEventListener("click", () => {
-                        const arr = textarea.value.split('');
-                        const position = textarea.selectionStart;
+                        const arr = this.elements.textarea.value.split('');
+                        const position = this.elements.textarea.selectionStart;
                         arr.splice(position, 1);
-                        textarea.value = arr.join('');
-                        textarea.selectionStart = textarea.selectionEnd;
-                        textarea.selectionStart = position;
+                        this.elements.textarea.value = arr.join('');
+                        this.elements.textarea.selectionStart = this.elements.textarea.selectionEnd;
+                        this.elements.textarea.selectionStart = position;
                     });
 
                     break;
@@ -274,6 +283,6 @@ const Keyboard = {
     },
 };
 
-window.addEventListener("DOMContentLoaded", function () {
+window.addEventListener("DOMContentLoaded", () => {
     Keyboard.init();
 });
