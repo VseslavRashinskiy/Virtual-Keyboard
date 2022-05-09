@@ -26,7 +26,7 @@ const Keyboard = {
 
         // Setup main elements
         this.elements.keysContainer.classList.add("keyboard__keys");
-        this.elements.keysContainer.appendChild(this._createKeys());
+        this.elements.keysContainer.appendChild(this.createKeys());
 
         this.elements.textarea = document.createElement('textarea');
         this.elements.textarea.classList.add('textarea');
@@ -53,7 +53,7 @@ const Keyboard = {
         });
     },
 
-    _createKeys() {
+    createKeys() {
         const fragment = document.createDocumentFragment();
         const keyLayout = [
             "`", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", "backspace",
@@ -66,16 +66,17 @@ const Keyboard = {
         keyLayout.forEach(key => {
             const keyElement = document.createElement("button");
             const insertLineBreak = ["backspace", "del", "enter", "shift"].indexOf(key) !== -1;
+            const temp = document.createElement('div');
 
             // Add attributes/classes
             keyElement.setAttribute("type", "button");
             keyElement.classList.add("keyboard__key");
+            keyElement.setAttribute("id", key);
 
             switch (key) {
                 case "backspace":
                     keyElement.classList.add("keyboard__key--wide");
                     keyElement.textContent = key.toLowerCase();
-                    let temp = document.createElement('div');
                     keyElement.appendChild(temp);
 
                     keyElement.addEventListener("click", () => {
@@ -93,8 +94,7 @@ const Keyboard = {
                 case "del":
                     keyElement.classList.add("keyboard__key--del");
                     keyElement.textContent = key.toLowerCase();
-                    let temp1 = document.createElement('div');
-                    keyElement.appendChild(temp1);
+                    keyElement.appendChild(temp);
 
                     keyElement.addEventListener("click", () => {
                         const arr = this.elements.textarea.value.split('');
@@ -110,11 +110,10 @@ const Keyboard = {
                 case "caps":
                     keyElement.classList.add("keyboard__key--wide", "keyboard__key--activatable");
                     keyElement.textContent = key.toLowerCase();
-                    let temp2 = document.createElement('div');
-                    keyElement.appendChild(temp2);
+                    keyElement.appendChild(temp);
 
                     keyElement.addEventListener("click", () => {
-                        this._toggleCapsLock();
+                        this.toggleCapsLock();
                         keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
                     });
 
@@ -123,27 +122,34 @@ const Keyboard = {
                     case "shiftL":
                         keyElement.classList.add("keyboard__key--wide");
                         keyElement.textContent = "shift";   
-                        let temp3 = document.createElement('div');
-                        keyElement.appendChild(temp3);
+                        keyElement.appendChild(temp);
+
+                        keyElement.addEventListener("click", () => {
+                            this.toggleCapsLock();
+                            keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
+                        });
                         break;
 
                     case "shift":
                         keyElement.classList.add("keyboard__key--shift");
                         keyElement.textContent = "shift";
-                        let temp4 = document.createElement('div');
-                        keyElement.appendChild(temp4);
+                        keyElement.appendChild(temp);
+
+                        keyElement.addEventListener("click", () => {
+                        this.toggleCapsLock();
+                        keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
+                    });
 
                         break;
 
                 case "enter":
                     keyElement.classList.add("keyboard__key--wide");
                     keyElement.textContent = key.toLowerCase();
-                    let temp5 = document.createElement('div');
-                    keyElement.appendChild(temp5);
+                    keyElement.appendChild(temp);
 
                     keyElement.addEventListener("click", () => {
                         this.properties.value += "\n";
-                        this._triggerEvent("oninput");
+                        this.triggerEvent("oninput");
                     });
 
                     break;
@@ -151,12 +157,11 @@ const Keyboard = {
                 case "tab":
                     keyElement.classList.add("keyboard__key--tab");
                     keyElement.textContent = key.toLowerCase();
-                    let temp6 = document.createElement('div');
-                    keyElement.appendChild(temp6);
+                    keyElement.appendChild(temp);
     
                     keyElement.addEventListener("click", () => {
                         this.properties.value += "   ";
-                        this._triggerEvent("oninput");
+                        this.triggerEvent("oninput");
                     });
 
                     break;
@@ -164,24 +169,21 @@ const Keyboard = {
                 case "win":
                     keyElement.classList.add("keyboard__key--win");
                     keyElement.textContent = key.toLowerCase();
-                    let temp7 = document.createElement('div');
-                    keyElement.appendChild(temp7);
+                    keyElement.appendChild(temp);
 
                     break;
 
                 case "alt":
                     keyElement.classList.add("keyboard__key--alt");
                     keyElement.textContent = key.toLowerCase();
-                    let temp8 = document.createElement('div');
-                    keyElement.appendChild(temp8);
+                    keyElement.appendChild(temp);
 
                     break;
 
                 case "ctrl":
                     keyElement.classList.add("keyboard__key--ctrl");
                     keyElement.textContent = key.toLowerCase();
-                    let temp9 = document.createElement('div');
-                    keyElement.appendChild(temp9);
+                    keyElement.appendChild(temp);
 
                     break;
 
@@ -191,7 +193,7 @@ const Keyboard = {
                     
                     keyElement.addEventListener("click", () => {
                         this.properties.value += "▲";
-                        this._triggerEvent("oninput");
+                        this.triggerEvent("oninput");
                     });
 
                     break;
@@ -202,7 +204,7 @@ const Keyboard = {
     
                     keyElement.addEventListener("click", () => {
                         this.properties.value += "◄";
-                        this._triggerEvent("oninput");
+                        this.triggerEvent("oninput");
                     });
 
                     break;
@@ -213,7 +215,7 @@ const Keyboard = {
     
                     keyElement.addEventListener("click", () => {
                         this.properties.value += "▼";
-                        this._triggerEvent("oninput");
+                        this.triggerEvent("oninput");
                     });
 
                     break;
@@ -224,7 +226,7 @@ const Keyboard = {
     
                     keyElement.addEventListener("click", () => {
                         this.properties.value += "►";
-                        this._triggerEvent("oninput");
+                        this.triggerEvent("oninput");
                     });
 
                     break;
@@ -234,7 +236,7 @@ const Keyboard = {
 
                     keyElement.addEventListener("click", () => {
                         this.properties.value += " ";
-                        this._triggerEvent("oninput");
+                        this.triggerEvent("oninput");
                     });
 
                     break;
@@ -244,7 +246,7 @@ const Keyboard = {
 
                     keyElement.addEventListener("click", () => {
                         this.properties.value += this.properties.capsLock ? key.toUpperCase() : key.toLowerCase();
-                        this._triggerEvent("oninput");
+                        this.triggerEvent("oninput");
                     });
 
                     break;
@@ -260,26 +262,25 @@ const Keyboard = {
         return fragment;
     },
 
-    _triggerEvent(handlerName) {
+    triggerEvent(handlerName) {
         if (typeof this.eventHandlers[handlerName] === "function") {
             this.eventHandlers[handlerName](this.properties.value);
         }
     },
 
-    _toggleCapsLock() {
+    toggleCapsLock() {
         this.properties.capsLock = !this.properties.capsLock;
 
-        for (const key of this.elements.keys) {
+        this.elements.keys.forEach((key) => {
             if (key.childElementCount === 0) {
                 key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
             }
-        }
+        })
     },
 
     open(initialValue, oninput) {
         this.properties.value = initialValue || "";
         this.eventHandlers.oninput = oninput;
-        console.log('oninput', oninput);
     },
 };
 
