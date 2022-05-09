@@ -114,33 +114,37 @@ const Keyboard = {
 
                     keyElement.addEventListener("click", () => {
                         this.toggleCapsLock();
-                        keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
                     });
 
                     break;
 
-                    case "shiftL":
+                case "shiftL":
                         keyElement.classList.add("keyboard__key--wide");
                         keyElement.textContent = "shift";   
                         keyElement.appendChild(temp);
 
-                        keyElement.addEventListener("click", () => {
+                        keyElement.addEventListener("mousedown", () => {
                             this.toggleCapsLock();
-                            keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
+                        });
+    
+                        keyElement.addEventListener("mouseup", () => {
+                            this.toggleCapsLock();
                         });
                         break;
 
-                    case "shift":
+                case "shift":
                         keyElement.classList.add("keyboard__key--shift");
                         keyElement.textContent = "shift";
                         keyElement.appendChild(temp);
 
-                        keyElement.addEventListener("click", () => {
+                        keyElement.addEventListener("mousedown", () => {
                         this.toggleCapsLock();
-                        keyElement.classList.toggle("keyboard__key--active", this.properties.capsLock);
-                    });
+                         });
 
-                        break;
+                    keyElement.addEventListener("mouseup", () => {
+                        this.toggleCapsLock();
+                    });
+                     break;
 
                 case "enter":
                     keyElement.classList.add("keyboard__key--wide");
@@ -270,10 +274,10 @@ const Keyboard = {
 
     toggleCapsLock() {
         this.properties.capsLock = !this.properties.capsLock;
-
         this.elements.keys.forEach((key) => {
-            if (key.childElementCount === 0) {
-                key.textContent = this.properties.capsLock ? key.textContent.toUpperCase() : key.textContent.toLowerCase();
+            const copyKey = key; 
+            if (copyKey.childElementCount === 0) {
+                copyKey.textContent = this.properties.capsLock ? copyKey.textContent.toUpperCase() : copyKey.textContent.toLowerCase();
             }
         })
     },
